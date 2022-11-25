@@ -24,3 +24,35 @@ print("hello world!") # this command is going to display something on our screen
 # help("insert the function") # why ther command is not working, we will check the documentation 
 # we can replace the "help" fucntion with "?"
 # "{}" this tells us the name of the package in which the function is present
+
+
+# KINDS OF DATA 
+TRUE 
+FALSE 
+T 
+F
+# these are the only ways in which True and false can be coded
+# Integer number
+1L # This is how you express integer number- number followed by L 
+typeof(1L) # this give the value as "integer"
+typeof(1) # this gives the value as "double" -> this means real number
+typeof(3.14) # this gives value as "double"
+typeof("any text") # this gives value as character
+first_word <- "Bellis"
+(second_word <- "perennis")
+paste(first_word, second_word) 
+# this give sthe result as Bellis perennis
+species_name <- paste(first_word, second_word)
+species_name
+paste(species_name, "L.")
+full_name <- paste(species_name, "L.")
+full_name
+0.00005
+5*10^(-5)
+# both give the same result of 5e-05
+# "+" sign in R reprrsents R is waiting for us to finish the code/command
+# 4 KINDS of data types exist: logical, character, integer, numeric (we have 2 more types which relate to complex numbers)
+## Syntax errors- commas very imp- used to seperate arguments, close the parenthesis
+# R is case sensitive
+
+
