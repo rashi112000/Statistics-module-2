@@ -1,0 +1,23 @@
+# install tidyverse
+# 4 kinds of data: 
+# 1. Logical (True or False, T/F)
+# 2. Integers: Whole numbers- need to add L in the end 
+# 3. Double/Numeric: All real numbers
+# 4. Characters: letters, words, phrases- even numbers within double quotes is a character
+
+
+# RELATIONAL OPERATORS 
+# <, >, <=, >=, == (equal to, single "=" will not work), != (it means not equal to/ negation of equal to)
+# DO NOT USE => or =< 
+# "=" is equivalent to "<-" so it is assigning value
+
+
+# LOGICAL OPERATORS
+a <- 1
+b <- 3
+1. && (Intersection) (and)  => a < 3 && b < 4 => TRUE
+2. || (Union) => a >3 || b < 4 => TRUE
+3. ! (Negate) => !FALSE => True 
+# (1 + 2) * 3 < a || b > 2**3 / 2 [9 < a || b > 4 ] => FALSE
+
+
