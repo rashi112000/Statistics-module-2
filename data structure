@@ -87,3 +87,5 @@ to extarct values frpm a vector, we use []
 eg: exam_grades <- c(92, 90, 84, 95, 77, 92, 85)
 exam_grades[3], result: 84, exam_grades[1:4], result: 92 90 84 95
 
+if you want to remove a particular element, exam_grade[-1]
+if you want to remove a series of elements exam_grades[c(-1, -2, -3)]
