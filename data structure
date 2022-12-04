@@ -76,3 +76,14 @@ my_integer[my_logical]
 
 my_logical <- c(FALSE, TRUE)
 my_integer[my_logical]
+
+# ":" used to write sequence , 1:3 = 1 2 3 
+# seq() : is used to write a sequence of numbers but with a step value 
+# eg: seq(from= 2 , to= 6, by= 2 ), result: 2 4 6 
+# rep(): is used to repeat a seq or number any number of times 
+# eg: rep(1:2, times=3) result: 1 2 1 2 1 2
+
+to extarct values frpm a vector, we use []
+eg: exam_grades <- c(92, 90, 84, 95, 77, 92, 85)
+exam_grades[3], result: 84, exam_grades[1:4], result: 92 90 84 95
+
