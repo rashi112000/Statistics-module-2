@@ -68,7 +68,7 @@ my_integer[2] # result: 7
 my_integer[2:4] # result: 7 8 9
 my_integer[c(1,2,4)] # result: 6 7 9 
 
-# extracting elements suing True and  False
+# extracting elements using True and  False
 rep( 1:5, 10)
 my_integer 
 my_logical <- c(TRUE, FALSE, TRUE, FALSE, TRUE)
@@ -82,10 +82,38 @@ my_integer[my_logical]
 # eg: seq(from= 2 , to= 6, by= 2 ), result: 2 4 6 
 # rep(): is used to repeat a seq or number any number of times 
 # eg: rep(1:2, times=3) result: 1 2 1 2 1 2
+if you want to repeat each element, 
+rep(1:5, each=5)
 
-to extarct values frpm a vector, we use []
+to extract values from a vector, we use []
 eg: exam_grades <- c(92, 90, 84, 95, 77, 92, 85)
 exam_grades[3], result: 84, exam_grades[1:4], result: 92 90 84 95
 
 if you want to remove a particular element, exam_grade[-1]
 if you want to remove a series of elements exam_grades[c(-1, -2, -3)]
+
+# recycling 
+my_logical <- c(FALSE, TRUE)
+my_integer <- 1:10
+my_integer[my_logical]
+
+indexing the vector
+# modifying the vector
+
+appending values-> adding more values to the same vector 
+my_integer <- 1:5
+new_integer <- c(my_integer, 6:10)
+new_integer
+
+removing the elements
+new_integer[-5]
+my_integer[-(3:7)]
+
+# FAMILY OF FUNCTIONS: as.*()
+as.integer(c(TRUE, FALSE))
+as.double(c(TRUE, FALSE))
+as.character()
+as.logical(), 0 becomes FALSE and rest every other positive or negative or decimal numbers becmome true
+
+# FAMILY OF FUNCTIONS: is.*()
+is.logical(c(TRUE, FALSE, TRUE))
