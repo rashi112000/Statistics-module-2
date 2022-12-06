@@ -1,0 +1,10 @@
+vec1 <- seq(5, -10, length.out=1000)
+length(vec1)=1000
+vec2 <- vec1[-c(991:1000)] 
+OR 
+vec2 <- vec1[-((length(vec1)-9): length(vec1))]
+length(vec2) == length(vec1) - 10
+paste0(LETTERS[1:10], 1:10)
+
+vec3 <- c("K", 2) 
+priority is given to charaters then numerical then integers then logical
