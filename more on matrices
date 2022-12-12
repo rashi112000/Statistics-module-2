@@ -1,0 +1,38 @@
+vec <- 1:9
+vec
+sum(vec)
+m <- matrix(vec, nrow=3)
+m
+sum(m)
+colnames(m) <- c("sp1","sp2","sp3")
+rownames(m) <- c("cave1","cave2","cave3")
+m
+sum(m[,1])
+sum(m[1,])  # shoudnt use this
+colSums(m) # used to calculate the sum of all the columns
+rowSums(m)
+colMeans(m)
+rowMeans(m)
+# the closer the mean and the median is more symmetric the distribution is
+summary(vec)
+summary(m) # this tells us the quanyiles based on the columns. In or der to do it with rows
+# we need to transpose the matrix
+t(m)
+summary(t(m)
+
+# FACTORS
+vec <- c("Tree","Grass","Forb","Grass","Tree")
+class(vec)
+fct <- factor(vec) # there is introduction of levels
+fct # the character has been converted to factor instaerd of levels
+
+# instead of letting R decide which all level to cgoose 
+vec <- c("Tree","Grass","Forb","Grass","Tree")
+lev <- vec <- c("Tree","Grass","Forb","Grass","Tree", "Liana")
+fct <- factor(vec, levels="lev")
+fct
+lev <- vec <- c("Tree","Grass","Forb","Liana")
+lev
+fct <- factor(vec, levels=lev)
+fct
+summary(fct)
