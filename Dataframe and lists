@@ -1,0 +1,12 @@
+# lists are one dimensional but dataquest says it is multi-dimensional -> depends on how you perceive it
+student <- "piero"
+scores <- c(27, 29, 25, 30)
+is_enrolled <- FALSE
+my_list <- list()
+
+to understand the understand the structure of the list -> str()
+list_names <- c("student","scores","enrollment")
+list_names
+extract a particular component from the symnbol is we use $
+
+[[]] they are always used to exract only single elment never the whole list
