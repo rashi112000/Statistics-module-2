@@ -63,3 +63,26 @@ list(list1, list2)
 list(list1 = list1, list2 = list2)
 my_list2 <- c(list = list1, list2 = list2)
 str(my_list2)
+
+
+# DATAFRAMES!!
+dat <- data.frame(a=1:10, b=letters[1:10], c=rep(c(FALSE, TRUE), 5))          
+dat           
+nrow(dat)
+dim(dat)
+names(dat) <- c("col1", "col2", "col3")
+dat
+dat[1]
+dat[1,]
+class(dat[,2:3])
+dat[,2:3]
+dat[[c(1,2)]]
+dat[[c(1,3)]]
+dat$col1 < 6
+dat[dat$col1 < 6, ]
+dat$col4 <- LETTERS[1:10]
+dat
+dat[1,1] <- 4
+dat
+
+            
