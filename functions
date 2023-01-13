@@ -1,0 +1,65 @@
+# making of functions- best names would be a verb and not noun
+greet <- function(){
+print("Hi!")
+}
+greet()
+# now adding argumemts to this function- giving some specifications or details 
+greet_me <- function() {
+  print(paste("Hi ", name, "!", sep ="")) 
+}  
+# using paste function to join the name/argument that we specified at the top 
+# sep is seperator is added - part of paste function to seperate the name and hi from each other
+
+# now adding some kind of output in this argument 
+example_mean <- function(nums) {
+  sum_nums <- sum(nums)
+  length_num <- length(nums)
+  sum_nums/ length_nums
+}
+# since sum_nums/ length_nums this is the last line of code , it will be retued as the output
+# but to clearly specify the ouput, we use a function called return()
+example_mean <- function(nums) {
+  sum_nums <- sum(nums)
+  length_nums <- length(nums)
+  
+  return(sum_nums/ length_nums)
+}
+example_mean(1:5)
+
+# let us have 2 functions put together
+remainder <- function(dividend, divisor){
+  whole <- floor(dividend/divisor)
+  rem <- dividend - (whole * divisor)
+  return(rem)
+}
+# floor function is used if we want to go to the nearest smallest integer
+# whatever we define in/ inside the function is not acessible in the global environment, for eg: if we enter whole , we will not get any value
+remainder(4,2)
+
+# how to assign default values to a function
+remainder2 <- function(dividend, divisor = 2){
+  whole <- floor(dividend/divisor)
+  rem <- dividend - (whole * divisor)
+  return(rem)
+  }
+  remainder2(dividend = 5, divisor = 2)
+  remainder2(divisor = 2, dividend = 5)
+  remainder2(3, dividend = 5)
+  
+  
+whole <- function(dividend, divisor){
+whl <- floor(dividend/divisor)
+return(whl)
+}
+
+whole-remainder <- function(dividend, divisor) {
+whl <- whole(dividend, divisor)
+rem <- remainder(dividend = dividend, divisor=divisor)
+return(rem)
+}
+whole_remainder <- function(dividend, divisor) {
+whl <- whole(dividend, divisor)
+rem <- remainder(dividend = dividend, divisor=divisor)
+return(c(whl,rem))
+}
+whole_remainder(7,4)
