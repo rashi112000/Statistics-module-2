@@ -1,0 +1,32 @@
+NA
+NULL
+is.na(c(1, NA)) # is.na is used to check if the numeric value is NA
+# typeof(NA) is logical, it is logical and can be converted into a character, double or integer very easily - that is why logical
+
+# missing value of integer
+typeof(NA_integer_)
+typeof(NA_real_)
+typeof(NA_character_)
+# NA is contagious
+sum(c(1:10, NA)) # -> results into NA, because we do not know what the value is so it will always be NA with NA
+
+# na.rm is the function to remove NA value from the observations and it's default value is FALSE
+sum(c(1:10, NA), na.rm = TRUE)
+summary(c(1:10, NA,NA))
+library(tidyverse)
+library(palmerpenguins)
+data("penguins")
+penguins
+summary(penguins)
+
+# 2 possibilties - either to guess the value or to remove that row or column
+# how to remove the rows
+
+# removing the NA's, we use na.omit(): write the name of the data from where you want to remove the NA
+
+na.omit(penguins)
+drop_na(penguins)
+drop_na(penguins, body_mass_g)
+
+penguins %>%
+filter(!is.na(body_mass_g)) # filter the data which do not have NA
