@@ -63,3 +63,4 @@ rem <- remainder(dividend = dividend, divisor=divisor)
 return(c(whl,rem))
 }
 whole_remainder(7,4)
+
