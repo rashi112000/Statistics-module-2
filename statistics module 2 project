@@ -1,0 +1,75 @@
+# R project - Happinness scores analysis  
+# Group: Rashi
+# The dataset I retrieved from "Kaggle" is analyzed to determine the relationship between Happiness Index Score in 2018 and a number of 
+# independent variables such as 'Overall rank', 'GDP per capita', 'Social support', 'Healthy life expectancy', 'Freedom to make life choices', 
+# 'Generosity' and 'Perceptions of corruption'. 
+# The dataset is composed of Happiness Index scores of 156 countries 
+# along with information regarding Their per capita GDP which represents the economic well-being of citizens, 
+# The social support quantifies the degree to which people have access to social networks including family and friends,
+# The healthy life expectancy measures how long people may expect to live in excellent health
+# The freedom to make decisions in life demonstrates how much control and autonomy people have over their lives,
+# and finally, The perception of corruption helps us to understand how prevalent it is in that society. 
+
+# The information included in the dataset includes the following variables:
+# Overall rank: the number of total country observed
+  # Quantitative - numeric
+  # Original Variable Name: Overall rank
+  # Modified Variable Name: column removed
+# Country or region: The countries whose above mentioned varaibles are calculated
+  # Qualitative - character
+  # Original Variable Name: Country or region
+  # Modified Variable Name: main_country
+# Happiness score :The score of each country
+  # Qualitative - numeric/double
+  # Original Variable Name: Score
+  # Modified Variable Name: Happiness_score
+# GDP per capita: Gross Domestic Product per capita for every country
+  # Qualitative - numeric/double
+  # Original Variable Name: GDP per capita
+  # Modified Variable Name: GDP
+# Social support
+  # Qualitative - numeric/double
+  # Original Variable Name: GDP per capita
+  # Modified Variable Name: GDP
+# Healthy life expectancy
+ # Qualitative - numeric/double
+  # Original Variable Name: Health
+  # Modified Variable Name: 
+# Freedom to make life choices
+ # Qualitative - numeric/double
+  # Original Variable Name: Freedom
+  # Modified Variable Name: 
+# Perceptions of corruption
+ # Qualitative - numeric/double
+  # Original Variable Name: corruption
+  # Modified Variable Name: 
+  
+# The following goals will be accomplished using this dataset:
+# 1. What is the absolute frequency distribution of the observations in regards 
+#    to endangered status
+# 2. What is the distribution of observations within each subspecies in the data set
+# 3. What is the average claw size for each main species and which of the 
+#    two main species have the longer claws on average
+# 4. How does the distribution of the weight and total length of each subspecies
+#    compare with each other for each of the two main species
+# 5. Is there a relationship between the weight & total
+#    length variables for either of the two main species
+
+# Install packages needed for this project
+install.packages(vegan)
+install.packages("tidyverse")
+install.packages("GGally")
+
+# Load the installed packages so that they are available for us to use
+library(tidyverse)
+library(GGally)
+library(vegan)
+
+# Create a data directory that can be reproducible
+??
+
+# importing the dataset
+year_2018 <- read.csv("C:/Data for R project/2018.csv")
+
+
+  
