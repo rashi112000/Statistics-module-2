@@ -44,16 +44,6 @@
   # Original Variable Name: corruption
   # Modified Variable Name: 
   
-# The following goals will be accomplished using this dataset:
-# 1. What is the absolute frequency distribution of the observations in regards 
-#    to endangered status
-# 2. What is the distribution of observations within each subspecies in the data set
-# 3. What is the average claw size for each main species and which of the 
-#    two main species have the longer claws on average
-# 4. How does the distribution of the weight and total length of each subspecies
-#    compare with each other for each of the two main species
-# 5. Is there a relationship between the weight & total
-#    length variables for either of the two main species
 
 # Install packages needed for this project
 install.packages(vegan)
@@ -66,10 +56,16 @@ library(GGally)
 library(vegan)
 
 # Create a data directory that can be reproducible
-??
+setwd("C:/Users/magic/Desktop/rproject")
 
 # importing the dataset
-year_2018 <- read.csv("C:/Data for R project/2018.csv")
+year_2018 <- read.csv("2018.csv", header= TRUE)
+year_2018
+glimpse(year_2018)
+names(year_2018)
+year_2018$GDP.per.capita <- as.factor(year_2018$GDP.per.capita)
+year_2018$GDP.per.capita
+class(year_2018$GDP.per.capita)
 
 
   
