@@ -1,5 +1,5 @@
 # R project - Happinness scores analysis  
-# Group: Rashi
+# Group: Parimal Maurya, Rashi Singh, Fausto 
 # The dataset I retrieved from "Kaggle" is analyzed to determine the relationship between Happiness Index Score in 2018 and a number of 
 # independent variables such as 'Overall rank', 'GDP per capita', 'Social support', 'Healthy life expectancy', 'Freedom to make life choices', 
 # 'Generosity' and 'Perceptions of corruption'. 
@@ -48,10 +48,12 @@
 # Install packages needed for this project
 install.packages(vegan)
 install.packages("tidyverse")
+install.packges("ggplot2")
 install.packages("GGally")
 
 # Load the installed packages so that they are available for us to use
 library(tidyverse)
+library(ggplot2)
 library(GGally)
 library(vegan)
 
@@ -62,10 +64,76 @@ setwd("C:/Users/magic/Desktop/r4ds")
 year_2018 <- read.csv("2018.csv", header= TRUE)
 year_2018
 glimpse(year_2018)
+ncol(year_2018)
+nrow(year_2018)
+str(year_2018)
+tibble(year_2018)
+# renaming the column names don't know if it is correct or not 
+year_2018 <- rename(year_2018, 
++                     Life_expectancy = Healthy.life.expectancy, 
++                     Corruption_impression = Perceptions.of.corruption, 
++                     Freedom = Freedom.to.make.life.choices)
+summary(year_2018)
+
+#Lets plot
+
+# We can create a new column in the year_2018 dataframe called "Development" that categorizes countries based on their GDP per capita.
+# First, we need to determine the cutoffs for each category.
+developed_cutoff <- quantile(year_2018$GDP.per.capita, 0.75)
+developing_cutoff <- quantile(year_2018$GDP.per.capita, 0.5)
+
+# Then, we can use the ifelse() function to assign each country to a category based on their GDP per capita.
+year_2018$Development <- ifelse(year_2018$GDP.per.capita >= developed_cutoff, "Developed",
+                                ifelse(year_2018$GDP.per.capita >= developing_cutoff, "Developing", "Underdeveloped"))
+glimpse(year_2018)
+
+# We can use the table() function to count the number of countries in each category.
+table(year_2018$Development)
+# PLOTTING 
+barplot(table(year_2018$Development),main = "Categories based on per capita GDP")
+
+# plotting life expectancy with development category 
+library(dplyr)
+library(ggplot2)
+# We can use the ggplot2 library to create a bar graph comparing the average Healthy Life Expectancy for each Development category.
+# First, we need to group the data by Development and calculate the mean Healthy Life Expectancy for each group.
+library(dplyr)
+year_2018 %>%
+    group_by(Development) %>%
+    summarize(avg_life_expectancy = mean(Life_expectancy)) %>%
+    ggplot(aes(x = Development, y = avg_life_expectancy, fill = Development)) +
+    geom_bar(stat = "identity") +
+    labs(title = "Average Healthy Life Expectancy by Development Category",
+         x = "Development Category",
+         y = "Average Healthy Life Expectancy")
+
+# let's plot life expectancy with GDP
+# We can use the ggplot2 library to create a scatterplot comparing GDP per capita with healthy life expectancy.
+# First, we need to install and load the ggplot2 library.
+install.packages("ggplot2")
+library(ggplot2)
+
+# Then, we can create the scatterplot using the aes() function to specify the x and y variables.
+ggplot(year_2018, aes(x = GDP.per.capita, y = Life_expectancy)) +
+    geom_point() +
+    labs(title = "GDP per Capita vs. Life Expectancy",
+         x = "GDP per Capita",
+         y = "Healthy Life Expectancy")
+plot(x= year_2018$GDP.per.capita, y = year_2018$Overall.rank, xlab = "GDP", ylab = "Happiness rank", main = "Relation between GDP and Happiness index rank") # negative realtion
+
+
 names(year_2018)
 year_2018$GDP.per.capita <- as.factor(year_2018$GDP.per.capita)
 year_2018$GDP.per.capita
 class(year_2018$GDP.per.capita)
+summary(year_2018)
+print(year_2018)
+
+plot(x= year_2018$GDP.per.capita, y = year_2018$Healthy.life.expectancy, xlab = "GDP", ylab = "Healthy Life", main = "Relation between GDP and Healthy Life") # positive relation
+plot(x= year_2018$GDP.per.capita, y = year_2018$Freedom.to.make.life.choices, xlab = "GDP", ylab = "Freedom", main = "Relation between GDP and Freedom")
+plot(x= year_2018$GDP.per.capita, y = year_2018$Overall.rank, xlab = "GDP", ylab = "Happiness rank", main = "Relation between GDP and Happiness index rank") # negative realtion
+plot(x= year_2018$GDP.per.capita, y = year_2018$Perceptions.of.corruption, xlab = "GDP", ylab = "corruption", main = "Relation between GDP and corruption")
+
 
 
   
