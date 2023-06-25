@@ -56,7 +56,7 @@ library(GGally)
 library(vegan)
 
 # Create a data directory that can be reproducible
-setwd("C:/Users/magic/Desktop/rproject")
+setwd("C:/Users/magic/Desktop/r4ds")
 
 # importing the dataset
 year_2018 <- read.csv("2018.csv", header= TRUE)
