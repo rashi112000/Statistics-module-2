@@ -49,14 +49,14 @@ install.packages("tidyverse")
 install.packages(dplyr)
 install.packages("ggplot2")
 install.packages("GGally")
-install.packages("vegan")
+
 
 # Load the installed packages so that they are available for us to use
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
 library(GGally)
-library(vegan)
+
 
 # Create a data directory that can be reproducible
 getwd()
