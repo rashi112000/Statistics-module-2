@@ -11,44 +11,44 @@
 # and finally, The perception of corruption helps us to understand how prevalent it is in that society. 
 
 # The information included in the dataset includes the following variables:
-# Overall rank: the number of total country observed
+# Overall rank: the number of total countries observed
   # Quantitative - numeric
   # Original Variable Name: Overall rank
-  # Modified Variable Name: column removed
+  # Modified Variable Name: -
 # Country or region: The countries whose above mentioned varaibles are calculated
   # Qualitative - character
   # Original Variable Name: Country or region
-  # Modified Variable Name: main_country
+  # Modified Variable Name: Country
 # Happiness score :The score of each country
-  # Qualitative - numeric/double
+  # Qualitative - double
   # Original Variable Name: Score
-  # Modified Variable Name: Happiness_score
+  # Modified Variable Name: Score
 # GDP per capita: Gross Domestic Product per capita for every country
-  # Qualitative - numeric/double
+  # Qualitative - double
   # Original Variable Name: GDP per capita
-  # Modified Variable Name: GDP
+  # Modified Variable Name: -
 # Social support
-  # Qualitative - numeric/double
-  # Original Variable Name: GDP per capita
-  # Modified Variable Name: GDP
+  # Qualitative - double
+  # Original Variable Name: Social support
+  # Modified Variable Name: column removed
 # Healthy life expectancy
  # Qualitative - numeric/double
-  # Original Variable Name: Health
-  # Modified Variable Name: 
+  # Original Variable Name: Healthy life expectancy
+  # Modified Variable Name: Life expectancy
 # Freedom to make life choices
- # Qualitative - numeric/double
-  # Original Variable Name: Freedom
-  # Modified Variable Name: 
+ # Qualitative - double
+  # Original Variable Name: Freedom to make life choices
+  # Modified Variable Name: Freedom
 # Perceptions of corruption
- # Qualitative - numeric/double
-  # Original Variable Name: corruption
-  # Modified Variable Name: 
+ # Qualitative - double
+  # Original Variable Name: Perceptions of corruption
+  # Modified Variable Name: column removed
   
 
 # Install packages needed for this project
 install.packages(vegan)
 install.packages("tidyverse")
-install.packges("ggplot2")
+install.packages("ggplot2")
 install.packages("GGally")
 
 # Load the installed packages so that they are available for us to use
