@@ -1,0 +1,198 @@
+# R project - Happinness scores analysis
+# Group: Parimal Maurya, Rashi Singh, Fausto
+
+# The dataset I retrieved from "Kaggle" is analyzed to determine the relationship between Happiness Index Score in 2018 and a number of
+# independent variables such as 'Overall rank', 'GDP per capita', 'Social support', 'Healthy life expectancy', 'Freedom to make life choices',
+# 'Generosity' and 'Perceptions of corruption'.
+# The dataset is composed of Happiness Index scores of 156 countries
+# along with information regarding Their per capita GDP which represents the economic well-being of citizens,
+# The social support quantifies the degree to which people have access to social networks including family and friends,
+# The healthy life expectancy measures how long people may expect to live in excellent health
+# The freedom to make decisions in life demonstrates how much control and autonomy people have over their lives,
+# and finally, The perception of corruption helps us to understand how prevalent it is in that society.
+
+# The information included in the dataset includes the following variables:
+# Overall rank: the number of total countries observed
+# Quantitative - numeric
+# Original Variable Name: Overall rank
+# Modified Variable Name: -
+# Country or region: The countries whose above mentioned varaibles are calculated
+# Qualitative - character
+# Original Variable Name: Country or region
+# Modified Variable Name: Country
+# Happiness score :The score of each country
+# Qualitative - double
+# Original Variable Name: Score
+# Modified Variable Name: -
+# GDP per capita: Gross Domestic Product per capita for every country
+# Qualitative - double
+# Original Variable Name: GDP per capita
+# Modified Variable Name: -
+# Social support
+# Qualitative - double
+# Original Variable Name: Social support
+# Modified Variable Name: column removed
+# Healthy life expectancy
+# Qualitative - numeric/double
+# Original Variable Name: Healthy life expectancy
+# Modified Variable Name: Life expectancy
+# Freedom to make life choices
+# Qualitative - double
+# Original Variable Name: Freedom to make life choices
+# Modified Variable Name: Freedom
+# Perceptions of corruption
+# Qualitative - double
+# Original Variable Name: Perceptions of corruption
+# Modified Variable Name: column removed
+# Install packages needed for this project
+install.packages("tidyverse")
+install.packages(dplyr)
+install.packages("ggplot2")
+install.packages("GGally")
+install.packages("vegan")
+
+# Load the installed packages so that they are available for us to use
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(GGally)
+library(vegan)
+
+# Create a data directory that can be reproducible
+getwd()
+setwd("C:/Users/magic/Desktop/r4ds")
+
+# Importing the dataset
+year_2018 <- read.csv("2018.csv", header = TRUE)
+year_2018
+
+# Applying more functions to have an idea of the variables type and number of observations observations
+glimpse(year_2018)
+ncol(year_2018)
+nrow(year_2018)
+
+# Another way to summarize the dataset is the str function
+str(year_2018)
+# This again shows the # of columns, # of rows,
+# variable names and associated data types in a different format
+
+# To look at the table version of the dataset with the tibble function
+tibble(year_2018)
+# This shows the dataset in a table format, with a view of the first 10
+# observations
+
+# We want to focus our analysis on a subdataset of the initial, so we have extracted parameters we were interested in using following code
+year2018sub <- year_2018[ ,c("Country.or.region", "GDP.per.capita", "Healthy.life.expectancy", "Freedom.to.make.life.choices")]
+
+# Renaming some parameters to make our study easy
+year2018sub <- rename(year2018sub, Life_expectancy = Healthy.life.expectancy, Freedom = Freedom.to.make.life.choices)
+year2018sub
+
+# Using summary function to have an idea of lower, highest, and central tendency
+summary(year2018sub)
+
+# We can create a new column in the year_2018sub dataframe called "Development" that categorizes countries based on their GDP per capita.
+# First, we need to determine the cutoffs for each category
+developed_cutoff <- quantile(year2018sub$GDP.per.capita, 0.75)
+developing_cutoff <- quantile(year2018sub$GDP.per.capita, 0.5)
+
+# Now we can use the ifelse() function to assign each country to a category based on their GDP per capita.
+year2018sub$Development <- ifelse(year2018sub$GDP.per.capita >= developed_cutoff, "Developed", ifelse(year_2018$GDP.per.capita >= developing_cutoff, "Developing", "Underdeveloped"))
+glimpse(year2018sub)
+
+# We can use the table() function to count the number of countries in each category.
+table(year2018sub$Development)
+
+# We use a barplot to represent it graphically
+barplot(table(year2018sub$Development), main = "Categories based on per capita GDP")
+# The figure shows that the number of developed and developing nations is identical while the number of underdeveloped nations is approximately twice as large. 
+
+# We can also use grouped boxplot to show different categories
+boxplot(year_2018[,4:9], main="Happiness Factors in 2018",
+xlab="Factors", ylab="Score", col=c("orange","yellow","green","blue","purple","red"))
+
+# and another one, more focused on relation between GDP and Development
+year2018sub %>%
+ggplot(aes(Development, GDP.per.capita))+
+geom_boxplot()+
+theme_bw()
+
+# Now we analyzed relation between life expectancy and development category
+year2018sub %>%
+group_by(Development) %>%
+summarize(avg_life_expectancy = mean(Life_expectancy)) %>%
+ggplot(aes(x = Development, y = avg_life_expectancy, fill = Development)) +
+geom_bar(stat = "identity") +
+labs(title = "Average Healthy Life Expectancy by Development Category",
+x = "Development Category",
+y = "Average Healthy Life Expectancy")
+
+# As can be seen, the life expectancy is higher in developed nations and decreases as we move into the category of developing and undeveloped nations.  
+
+# Let's plot life expectancy with GDP
+# We can use the ggplot2 library to create a scatterplot comparing GDP per capita with healthy life expectancy.
+# Then, we can create the scatterplot using the aes() function to specify the x and y variables.
+ggplot(year2018sub, aes(x = GDP.per.capita, y = Life_expectancy)) +
+geom_point() +
+labs(title = "GDP per Capita vs. Life Expectancy",
+x = "GDP per Capita",
+y = "Healthy Life Expectancy")
+
+# The correlation between the two is evident since life expectancy rises in tandem with rising GDP per capita. 
+
+# We do the same to understand graphically the trend of GDP and Freedom
+ggplot(year2018sub, aes(x = GDP.per.capita, y = Freedom )) +
+geom_point() +
+labs(title = "GDP per Capita vs. Freedom",
+x = "GDP per Capita",
+y = "Freedom")
+# Since there isn't a clear link between the variables in the earlier graph
+
+# we decided to verify it using pearson correlation test
+cor.test(year2018sub$GDP.per.capita, year2018sub$Freedom)
+# This effectively shows low level of correlation (0.33)
+
+# then we applyied the same test to GDP and Life expectancy
+cor.test(year2018sub$GDP.per.capita, year2018sub$Life_expectancy)
+# This effectively shows high level of correlation (0.84)
+
+# Now let us look at relationship between GDP and Happiness Index
+GDPandHAPPINESS <- cbind(year2018sub, year_2018$Score)
+GDPandHAPPINESS
+GDPandHAPPINESS2 <- GDPandHAPPINESS[ , c(1, 2, 5, 6)]
+glimpse(GDPandHAPPINESS2)
+GDPandHAPPINESS3 <- GDPandHAPPINESS2[ , c("GDP.per.capita", "year_2018$Score" )]
+table(GDPandHAPPINESS3)
+glimpse(GDPandHAPPINESS3)
+plot(x= GDPandHAPPINESS3$GDP.per.capita, y = GDPandHAPPINESS3$year_2018Score, xlab = "GDP", ylab = "Happiness rank", main = "Relation between GDP and Happiness index rank")
+# The plot shows a negative relationship between the two, with Happiness ratings falling as GDP rises. 
+
+
+# Analysing the relation between Development category and Happiness Score
+COUNTRYandSCORE <- GDPandHAPPINESS[ , c(5, 6)]
+COUNTRYandSCORE
+view(COUNTRYandSCORE)
+class(COUNTRYandSCORE$Development)
+COUNTRYandSCORE$Development <- as.factor(COUNTRYandSCORE$Development)
+glimpse(COUNTRYandSCORE)
+levels(COUNTRYandSCORE$Development)
+COUNTRYandSCORE$Development <- factor((COUNTRYandSCORE$Development), levels = c("Underdeveloped", "Developing", "Developed"))
+levels(COUNTRYandSCORE$Development)
+barplot(table(COUNTRYandSCORE$Development), main = "Development levels related to the Happiness Score")
+# We can clearly see that Underdeveloped nations have higher happiness score as compared to the countries who are developed.
+
+# Hypothesis Testing
+
+# Hypothesis Test: GDP per Capita & Happiness Score
+# H0: there is no correlation between the GDP per Capita and Happiness Score
+# H1: there is a strong correlation: GDP per Capita ~ Happiness Score
+
+# We applied a linear model testing to test our hypothesis
+GDPandHAPPINESS3 %>%
+lm(GDP.per.capita ~ `year_2018$Score`, data = .) %>% summary()
+
+# The test returned a very small p-value (2e-16) and a R-squared of 0.64 indicating strong correlation between GDP per Capita & Happiness Score
+# Therefore, H0, the null hypothesis can be rejected
+
+# The result of this hypothesis test is supported by the scatter plot above between GDP per Capita & Happiness Score which shows a negative correlation between the two variables
+
